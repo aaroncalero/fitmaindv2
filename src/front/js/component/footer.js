@@ -29,7 +29,9 @@ export const Footer = () => (
 			</div>
 		</div>
 		<div classsName="text-center">
-			<p className="mt-4">Desarrolladores: Andra Piedra, Cristoher Esquivel, Aron , Esther Rosales, Jesus Lara</p>
+			<p className="mt-4">
+				Desarrolladores: Andrea Piedra, Cristoher Esquivel, Aaron Calero, Esther Rosales, Jesus Lara
+			</p>
 		</div>
 	</footer>
 );
