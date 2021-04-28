@@ -60,6 +60,9 @@ export const Home = () => {
 									Login
 								</Button>
 							</Link>
+							<Link to="/recuperacion">
+								<a href="#">Recuperar contraseña</a>
+							</Link>
 						</Form>
 					</div>
 				</div>
