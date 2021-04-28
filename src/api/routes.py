@@ -33,7 +33,7 @@ def login():
         return jsonify ({"message": "Bad user or password"}),401
     else:
         access_token = create_access_token(identity=user.id)
-        return jsonify({"token": access_token}),200
+        return jsonify({"token": access_token, "id":user.id}),200
 
 @api.route("/protected", methods=["GET"])
 @jwt_required()
