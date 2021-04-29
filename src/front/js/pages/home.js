@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -10,6 +10,9 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	useEffect(() => {
+		actions.changeNav("2");
+	});
 
 	function validateForm() {
 		return email.length > 0 && password.length > 0;
@@ -61,7 +64,9 @@ export const Home = () => {
 								</Button>
 							</Link>
 							<Link to="/recuperacion">
-								<a href="#">Recuperar contraseña</a>
+								<a className="mt-2" href="#">
+									Recuperar contraseña
+								</a>
 							</Link>
 						</Form>
 					</div>
