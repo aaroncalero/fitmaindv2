@@ -10,7 +10,7 @@ export const Navbar = () => {
 		if (store.navLavel == "Salir") {
 			return (window.location.href = "./");
 		} else {
-			return (window.location.href = "./demo");
+			return (window.location.href = "./registerUser");
 		}
 	};
 	return (
