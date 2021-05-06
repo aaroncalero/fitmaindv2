@@ -11,7 +11,7 @@ export const Recuperacion = () => {
 	const [Respuesta, setRespuesta] = useState("");
 
 	function validateForm() {
-		return email.length > 0 && Respuesta.length > 0;
+		return email.length > 0;
 	}
 	function handleSubmit(event) {
 		event.preventDefault();
