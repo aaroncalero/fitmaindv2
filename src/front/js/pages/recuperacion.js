@@ -39,15 +39,6 @@ export const Recuperacion = () => {
 									Utiliza una direccion registrada en el sistema.
 								</div>
 							</Form.Group>
-							<Form.Group size="text" controlId="pregunta">
-								<Form.Label>Pregunta</Form.Label>
-
-								<Form.Control
-									type="text"
-									value={Respuesta}
-									onChange={e => setRespuesta(e.target.value)}
-								/>
-							</Form.Group>
 							<Link to="/">
 								<button
 									type="button"
