@@ -5,8 +5,12 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import portada from "../../img/portada.jpg";
+import TextInput from "react-autocomplete-input";
 
 export const Home = () => {
+	useEffect(() => {
+		actions.changeNav("externa");
+	}, []);
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -41,6 +45,7 @@ export const Home = () => {
 							<Form.Group size="lg" controlId="password">
 								<Form.Label>Password</Form.Label>
 								<Form.Control
+									autoComplete="off"
 									type="password"
 									value={password}
 									onChange={e => setPassword(e.target.value)}
@@ -63,9 +68,9 @@ export const Home = () => {
 						</Form>
 					</div>
 				</div>
-				<div id="info" className="col-12 text-center mt-3 mx-auto">
-					<h3 className="mt-2">Biografía</h3>
-					<p>
+				<div id="info" className="col-12 text-center mt-3 mx-auto text-wrap">
+					<h3>Biografía</h3>
+					<p className="text-break">
 						FitMind es una aplicación web que le permite mejorar sus conocimientos en áreas
 						lógico-matemáticos y de compresión de lectura a un nivel que, aun siendo riguroso, sea lo
 						suficientemente sencillo. Con esto buscamos mejorar su capacidad para resolver problemas en

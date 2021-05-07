@@ -8,7 +8,7 @@ export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<nav className="navbar  mb-3">
+		<nav className=" divpinta navbar  mb-3">
 			<Link to="/">
 				<img style={{ width: "4rem" }} src={logo} />
 			</Link>
@@ -16,17 +16,17 @@ export const Navbar = () => {
 				<h1 id="title">FitMind</h1>
 			</div>
 			<div className="ml-auto">
-				{store.navState ? (
+				{store.navState == "externa" ? (
+					<Link to="/registerUser">
+						<button className="btn btn-light">Regístrate</button>
+					</Link>
+				) : store.navState == "principal" ? (
 					<Link to="/">
-						<button className="btn btn-light" onClick={() => actions.changeNav(false)}>
-							Salir
-						</button>
+						<button className="btn btn-light">Salir</button>
 					</Link>
 				) : (
-					<Link to="/registerUser">
-						<button className="btn btn-light" onClick={() => actions.changeNav(true)}>
-							Regístrate
-						</button>
+					<Link to="/demo">
+						<button className="btn btn-light">Volver</button>
 					</Link>
 				)}
 			</div>

@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			navState: false
+			navState: "externa"
 		},
 		actions: {
 			// Use getActions to call a function within a fuction

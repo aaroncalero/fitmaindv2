@@ -1,14 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Row, Col, Form, Label, Input, FormGroup, Button } from "reactstrap";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/registeruser.scss";
 
 export const RegisterUser = () => {
+	useEffect(() => {
+		actions.changeNav("principal");
+	}, []);
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div id="divpinta">
+		<div className="divpinta">
 			<Row>
 				<Col xs="3" />
 				<Col xs="6">

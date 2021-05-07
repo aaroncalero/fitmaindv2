@@ -6,6 +6,9 @@ import Form from "react-bootstrap/Form";
 import "../../styles/recuperacion.scss";
 
 export const Recuperacion = () => {
+	useEffect(() => {
+		actions.changeNav("principal");
+	}, []);
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [Respuesta, setRespuesta] = useState("");
@@ -46,11 +49,6 @@ export const Recuperacion = () => {
 									disabled={!validateForm()}
 									onClick={() => alert("Contraseña enviada a tu correo electronico")}>
 									Enviar
-								</button>
-							</Link>
-							<Link to="/">
-								<button type="button" className="btn btn-danger m-3">
-									Salir
 								</button>
 							</Link>
 						</Form>
