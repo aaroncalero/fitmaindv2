@@ -8,10 +8,7 @@ export const RegisterUser = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="mt-5" id="divpinta">
-			<div className="content mr-3">
-				<img className="imagen1" src={rigoImageUrl} />
-			</div>
+		<div id="divpinta">
 			<Row>
 				<Col xs="3" />
 				<Col xs="6">
@@ -64,10 +61,6 @@ export const RegisterUser = () => {
 					</Form>
 				</Col>
 			</Row>
-			<br />
-			<div className="text-center alert alert-info" id="alert_inf">
-				{store.message || "Loading message from the backend..."}
-			</div>
 		</div>
 	);
 };

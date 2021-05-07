@@ -10,19 +10,12 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	useEffect(() => {
-		actions.changeNav("2");
-	});
 
 	function validateForm() {
 		return email.length > 0 && password.length > 0;
 	}
 	function handleSubmit(event) {
 		event.preventDefault();
-	}
-
-	function ingreso() {
-		return (window.location.href = "./demo");
 	}
 	return (
 		<div className="container">
@@ -54,19 +47,18 @@ export const Home = () => {
 								/>
 							</Form.Group>
 							<Link to="/demo">
-								<Button
-									block
-									size="lg"
+								<button
 									type="submit"
+									className="btn btn-primary btn-lg btn-block"
 									disabled={!validateForm()}
-									onclick={() => ingreso()}>
+									onClick={() => actions.changeNav(true)}>
 									Login
-								</Button>
+								</button>
 							</Link>
 							<Link to="/recuperacion">
-								<a className="mt-2" href="#">
+								<p className="mt-2" style={{ color: "blue" }}>
 									Recuperar contraseña
-								</a>
+								</p>
 							</Link>
 						</Form>
 					</div>

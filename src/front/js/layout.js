@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
+import { Perfil } from "./pages/perfil";
 import { Demo } from "./pages/demo";
 import { RegisterUser } from "./pages/registerUser";
 import { Single } from "./pages/single";
@@ -35,6 +36,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/registerUser">
 							<RegisterUser />
+						</Route>
+						<Route exact path="/perfil">
+							<Perfil />
 						</Route>
 						<Route exact path="/single/:theid">
 							<Single />

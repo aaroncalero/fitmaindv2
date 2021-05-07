@@ -6,13 +6,7 @@ import { Context } from "../store/appContext";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
-	const accion = () => {
-		if (store.navLavel == "Salir") {
-			return (window.location.href = "./");
-		} else {
-			return (window.location.href = "./registerUser");
-		}
-	};
+
 	return (
 		<nav className="navbar  mb-3">
 			<Link to="/">
@@ -22,11 +16,19 @@ export const Navbar = () => {
 				<h1 id="title">FitMind</h1>
 			</div>
 			<div className="ml-auto">
-				<Link>
-					<button className="btn btn-light" onClick={() => accion()}>
-						{store.navLavel}
-					</button>
-				</Link>
+				{store.navState ? (
+					<Link to="/">
+						<button className="btn btn-light" onClick={() => actions.changeNav(false)}>
+							Salir
+						</button>
+					</Link>
+				) : (
+					<Link to="/registerUser">
+						<button className="btn btn-light" onClick={() => actions.changeNav(true)}>
+							Regístrate
+						</button>
+					</Link>
+				)}
 			</div>
 		</nav>
 	);

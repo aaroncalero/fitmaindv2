@@ -11,7 +11,7 @@ export const Recuperacion = () => {
 	const [Respuesta, setRespuesta] = useState("");
 
 	function validateForm() {
-		return email.length > 0 && Respuesta.length > 0;
+		return email.length > 0;
 	}
 	function handleSubmit(event) {
 		event.preventDefault();
@@ -38,15 +38,6 @@ export const Recuperacion = () => {
 								<div id="emailHelp" className="form-text mb-2" style={{ color: "gray" }}>
 									Utiliza una direccion registrada en el sistema.
 								</div>
-							</Form.Group>
-							<Form.Group size="text" controlId="pregunta">
-								<Form.Label>Pregunta</Form.Label>
-
-								<Form.Control
-									type="text"
-									value={Respuesta}
-									onChange={e => setRespuesta(e.target.value)}
-								/>
 							</Form.Group>
 							<Link to="/">
 								<button

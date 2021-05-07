@@ -28,7 +28,7 @@ export const Footer = () => (
 				</div>
 			</div>
 		</div>
-		<div classsName="text-center">
+		<div className="text-center">
 			<p className="mt-4">
 				Desarrolladores: Andrea Piedra, Cristoher Esquivel, Aaron Calero, Esther Rosales, Jesus Lara
 			</p>
