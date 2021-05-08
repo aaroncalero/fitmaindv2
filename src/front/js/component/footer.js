@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import cinde from "../../img/cinde.jpg";
 import geeks from "../../img/4geeks.jpg";
 import micitt from "../../img/Micitt_logo.png";
+import "../../styles/footer.scss";
 
 export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center " style={{ color: "#B4B3AE" }}>
+	<footer className="footer mt-auto py-3 text-center mt-5">
 		<div className="container">
 			<div className="row">
 				<div className="col-3">

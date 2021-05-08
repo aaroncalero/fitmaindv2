@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Form from "react-bootstrap/Form";
 
-import "../../styles/recuperacion.scss";
-
 export const Recuperacion = () => {
 	useEffect(() => {
 		actions.changeNav("principal");
