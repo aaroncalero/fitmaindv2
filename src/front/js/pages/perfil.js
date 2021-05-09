@@ -21,7 +21,7 @@ export const Perfil = () => {
 						<div>
 							<div>
 								<div>
-									<img id="avatar" className="img-fluid" src={foto} />
+									<img id="avatar" src={foto} />
 									<h4>Nombre_usuario</h4>
 								</div>
 							</div>
