@@ -15,6 +15,9 @@ export const Demo = () => {
 	const goPerfil = () => {
 		return (window.location.href = "./perfil");
 	};
+	const gotest = () => {
+		return (window.location.href = "./test");
+	};
 
 	return (
 		<div className="backContainer">
@@ -25,7 +28,7 @@ export const Demo = () => {
 						<h1 className="textoGuia">Mi Perfil</h1>
 					</div>
 
-					<div id="test" className="col-6 opcion text-center">
+					<div id="test" className="col-6 opcion text-center" onClick={() => gotest()}>
 						<h1 className="textoGuia">Inicia una prueba</h1>
 					</div>
 				</div>
