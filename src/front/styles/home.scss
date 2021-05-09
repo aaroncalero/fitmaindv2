@@ -1,12 +1,20 @@
 body{
-    background: black;
+    background-image:    
+    url(../img/fondo.png);
+    background-size: 100% 100%;
+    color: white;
+}
+.login{
+    background: rgba(128, 128, 128, 0.801);
+    border-radius: 5%;
 }
 #info{
-    background: purple;
     color:white;
-    height: 8rem
 }
 .list-group-item-action{
     background: purple;
     color:white
+}
+.beneficios{
+    color: rgba(204, 204, 166, 0.904);
 }
