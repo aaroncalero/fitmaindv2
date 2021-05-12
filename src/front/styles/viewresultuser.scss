@@ -1,0 +1,18 @@
+.table-info .table-bordered{
+    border: 5px solid rgb(40, 206, 189);
+   // margin-top:20px;
+  }
+
+#reacttable > thead > tr > th{
+    border: 5px solid rgb(40, 206, 189);
+    text-align: center;
+}
+
+input:hover{
+   
+    box-shadow: 3px 0px 30px rgba($color: #EAB417 , $alpha: 1.0); 
+}
+select:hover{
+    cursor: pointer;
+    box-shadow: 3px 0px 30px rgba($color: #EAB417 , $alpha: 1.0); 
+}
