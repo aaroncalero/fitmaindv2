@@ -1,24 +1,41 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			navState: "externa"
+			navState: "externa",
+			permitir: false
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			// exampleFunction: () => {
-			// 	getActions().changeColor(0, "green");
-			// },
+			getUser: (email, password) => {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
 
-			// getMessage: () => {
-			// 	// fetching data from the backend
-			// 	fetch(process.env.BACKEND_URL + "/api/hello")
-			// 		.then(resp => resp.json())
-			// 		.then(data => {
-			// 			setStore({ message: data.message });
-			// 			console.log(message);
-			// 		})
-			// 		.catch(error => console.log("Error loading message from backend", error));
-			// },
+				var raw = JSON.stringify({
+					email: email,
+					password: password
+				});
+
+				var requestOptions = {
+					method: "POST",
+					headers: myHeaders,
+					body: raw,
+					redirect: "follow"
+				};
+
+				fetch("https://3001-coffee-alligator-settqjis.ws-us04.gitpod.io/api/login", requestOptions)
+					.then(response => {
+						if (response.status >= 200 && response.status < 300) {
+							return response.json();
+						} else {
+							alert("error" + response.status);
+						}
+					})
+					.then(result => {
+						alert(result.token);
+						setStore({ permitir: true });
+					})
+					.catch(error => console.log("error", error));
+			},
+
 			changeNav: index => {
 				setStore({ navState: index });
 			}
