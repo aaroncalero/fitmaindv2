@@ -14,43 +14,29 @@ api = Blueprint('api', __name__)
 #USUARIO
 @api.route('/createUser', methods=['POST'])
 def create_User():
-    id=request.json.get("id",None)
-    name=request.json.get("name",None)
-    password=request.json.get("password",None)
-    birthday=request.json.get("birthday",None)
-    gender=request.json.get("gender",None)
-    email=request.json.get("email",None)
-    if name is None:
-        return jsonify ({"message": "missing information to complete"}),400
-    if password is None:
-        return jsonify ({"message": "missing information to complete"}),400
-    if birthday is None:
-        return jsonify ({"message": "missing information to complete"}),400
-    if gender is None:
-        return jsonify ({"message": "missing information to complete"}),400
-    if email is None:
-        return jsonify ({"message": "missing information to complete"}),400
-    else:
-        user=User(id=id, name=name, password=password, birthday=birthday, gender=gender, email=email)
+    data = request.get_json()
+    for i in data:
+        user=User(name=i["name"], password=i["password"], birthday=i["birthday"], gender=i["gender"], email=i["email"])
         db.session.add(user)
         db.session.commit()
+    return jsonify({"user":"ok"}),200 
 
-        return jsonify({"user":"ok"}),200 
+@api.route('/consultaUser', methods=['GET'])
+def consulta_User():
+    id=request.json.get("id",None)
+    consulta= User.query.get(id)
+    
+    return jsonify({"msg":consulta.serialize()}),200
 #CALIFICACION
 @api.route("/createCalificacion", methods=['POST'])
 def create_Calificacion():
-    id=request.json.get("id",None)
-    id_name=request.json.get("id_name",None)
-    id_test=request.json.get("id_test",None)
-    calificacion=request.json.get("calificacion",None)
-    if calificacion is None:
-        return jsonify ({"message": "missing information to complete"}),400
-    else:
-        calific=Calificaciones(id=id, id_user= id_name, calificacion=calificacion)
+    data = request.get_json()
+    for i in data:
+        calific=Calificaciones(calificacion=i["calificacion"])
         db.session.add(calific)
         db.session.commit()
 
-        return jsonify({"calific":"ok"}),200
+    return jsonify({"calific":"ok"}),200
    
 
 @api.route('/consultaCalificacion', methods=['GET'])
@@ -85,6 +71,7 @@ def protected():
     current_user_id=get_jwt_identity()
     user=User.query.get(current_user_id)
     return jsonify({"id":user.id, "email":user.email})
+    
 #QUESTION
 @api.route("/question", methods=["GET"])
 def Question():
@@ -94,36 +81,14 @@ def Question():
 
 @api.route("/question", methods=["POST"])
 def Question_agregar():
-    test_log=request.json.get("test_log", None)
-    frase=request.json.get("frase",None)
-    option=request.json.get("option",None)
-    if test_log is None:
-        return jsonify ({"message": "missing information to complete"}),400
-    if frase is None:
-        return jsonify ({"message": "missing information to complete"}),400
-    if option is None:
-        return jsonify ({"message": "missing information to complete"}),400
-    else:
-        question=Question(frase=frase, option=option, test_log=test_log)
+    data = request.get_json()
+    for i in data:
+        question=Question(frase=i["frase"], option_correcta=i["option_correcta"], option_mal1=i["option_mal1"], option_mal2=i["option_mal2"], option_mal3=i["option_mal3"], test_log=i["test_log"])
         db.session.add(question)
         db.session.commit()
     
-        return jsonify({"results":"ok"}),200
+    return jsonify({"results":"ok"}),200
 
-@api.route("/test", methods=["POST"])
-def Test_agregar():
-    tema=request.json.get("tema", None)
-    type_test=request.json.get("type_test",None)
-    if tema is None:
-        return jsonify ({"message": "missing information to complete"}),400
-    if type_test is None:
-        return jsonify ({"message": "missing information to complete"}),400
-    else:
-        test=Test(tema=tema, type_test=type_test)
-        db.session.add(test)
-        db.session.commit()
-    #user=json.loads(name, color_ojos, color_cabello,gender)
-        return jsonify({"test":"ok"}),200
 
 #RECUPERAR CONTRASEÑA
 @api.route("/forgot_pass", methods=["POST"])
