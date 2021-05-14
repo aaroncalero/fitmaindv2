@@ -10,18 +10,18 @@ class User(db.Model):
     gender = db.Column(db.String(120), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     
-def __repr__(self):
-    return '<User %r>' % self.username
+    def __repr__(self):
+        return '<User %r>' % self.username
 
-def serialize(self):
-    return {
-        "id": self.id,
-        "email": self.email,
-        "birthday":self.birthday,
-        "gender":self.gender,
-        "name":self.name
+    def serialize(self):
+        return {
+            "id": self.id,
+            "email": self.email,
+            "birthday":self.birthday,
+            "gender":self.gender,
+            "name":self.name
             # do not serialize the password, its a security breach
-    }	
+        }	
 
 class Calificaciones(db.Model):
     __tablename__= 'calificaciones'

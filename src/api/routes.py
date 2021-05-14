@@ -5,7 +5,7 @@ import os
 #import sendgrid
 #from sendgrid.helpers.mail import *
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Calificaciones, Test, Question
+from api.models import db, User, Calificaciones, Question
 from api.utils import generate_sitemap, APIException
 from flask_mail import Message
 from flask_jwt_extended import create_access_token, JWTManager, jwt_required, get_jwt_identity
@@ -15,7 +15,9 @@ api = Blueprint('api', __name__)
 @api.route('/createUser', methods=['POST'])
 def create_User():
     data = request.get_json()
+    #print(data)
     for i in data:
+        #print(item["name"])
         user=User(name=i["name"], password=i["password"], birthday=i["birthday"], gender=i["gender"], email=i["email"])
         db.session.add(user)
         db.session.commit()
