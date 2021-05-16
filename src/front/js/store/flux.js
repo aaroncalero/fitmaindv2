@@ -21,7 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					redirect: "follow"
 				};
 
-				fetch("https://3001-coffee-alligator-settqjis.ws-us04.gitpod.io/api/login", requestOptions)
+				fetch("https://3001-red-mackerel-4t09sy4v.ws-us04.gitpod.io/api/login", requestOptions)
 					.then(response => {
 						if (response.status >= 200 && response.status < 300) {
 							return response.json();

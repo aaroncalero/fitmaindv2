@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import TextInput from "react-autocomplete-input";
 import { Accordion } from "react-bootstrap";
+import { LoginFacebook } from "../component/login_facebook";
 
 export const Home = () => {
 	useEffect(() => {
@@ -90,6 +91,8 @@ export const Home = () => {
 								onClick={() => validacion(email, password)}>
 								Login
 							</button>
+							<br />
+							<LoginFacebook></LoginFacebook>
 
 							<Link to="/recuperacion">
 								<p className="mt-2" style={{ color: "blue" }}>
