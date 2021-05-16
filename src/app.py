@@ -20,15 +20,18 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 #Email
-app.config['SECRET_KEY'] = 'top-secret!'
-app.config['MAIL_SERVER'] = 'smtp.sendgrid.net'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'apikey'
-app.config['MAIL_PASSWORD'] = os.environ.get('SENDGRID_API_KEY')
-app.config['MAIL_DEFAULT_SENDER'] = 'cris-nando01@hotmail.com'
+mail_settings = {
+    "MAIL_SERVER": "smtp.gmail.com",
+    "MAIL_PORT":  465,
+    "MAIL_USE_SSL": True,
+    "MAIL_USERNAME": "finanestu19@gmail.com",
+    "MAIL_PASSWORD": "Fernando010411",
+    "MAIL_DEFAULT_SENDER": ('FitMind', 'finanestu19@gmail.com')
+}
 
+app.config.update(mail_settings)
 mail = Mail(app)
+app.mail= mail
 # database condiguration
 if os.getenv("DATABASE_URL") is not None:
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')

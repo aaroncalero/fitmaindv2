@@ -4,7 +4,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 import os
 import sendgrid
 from sendgrid.helpers.mail import *
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, url_for, Blueprint,current_app
 from api.models import db, User, Calificaciones, Question
 from api.utils import generate_sitemap, APIException
 from flask_mail import Message
@@ -93,17 +93,21 @@ def Question_agregar():
 #RECUPERAR CONTRASEÑA
 @api.route("/forgot_pass", methods=["POST"])
 def forgot_pass():
-    from app import mail
     #paso1 recibir email y respuesta secreta
     #paso2 corroborar si la respuesta secreta es correcta y el mail (CONSULTAR A BASE DE DATOS)
     #paso3 si mail y respuesta calzan enviar mail con
     email=request.json.get("email", None)
-    email_registrado = User.query.filter_by(email=email).first()
-    if email_registrado is None:
+
+    if not email:
         return jsonify({"message": "Email no registrado"}), 400
+
+    email_registrado = User.query.filter_by(email=email).first()
+    if not email_registrado:
+        return jsonify ({"msg":"Si el correo es válido se ha enviado la información de recuperación"}), 400
+
     msg= Message('Recuperacion de contraseña', recipients=[email])
     msg.html = ('<strong>Su contraseña actual es </strong>'+ email_registrado.password)
-    mail.send(msg)
+    current_app.mail.send(msg)
     return jsonify({"message": "Su contraseña fue enviada a su correo"}), 200
 
 
