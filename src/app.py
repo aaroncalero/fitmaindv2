@@ -2,6 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
+from flask_mail import Mail, Message
 from flask import Flask, request, jsonify, url_for, send_from_directory
 from flask_migrate import Migrate
 from flask_swagger import swagger
@@ -18,6 +19,19 @@ static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
+#Email
+mail_settings = {
+    "MAIL_SERVER": "smtp.gmail.com",
+    "MAIL_PORT":  465,
+    "MAIL_USE_SSL": True,
+    "MAIL_USERNAME": "finanestu19@gmail.com",
+    "MAIL_PASSWORD": "Fernando010411",
+    "MAIL_DEFAULT_SENDER": ('FitMind', 'finanestu19@gmail.com')
+}
+
+app.config.update(mail_settings)
+mail = Mail(app)
+app.mail= mail
 # database condiguration
 if os.getenv("DATABASE_URL") is not None:
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')

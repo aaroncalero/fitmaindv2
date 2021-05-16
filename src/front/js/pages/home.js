@@ -5,6 +5,8 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import TextInput from "react-autocomplete-input";
+import { Accordion } from "react-bootstrap";
+import { LoginFacebook } from "../component/login_facebook";
 
 export const Home = () => {
 	useEffect(() => {
@@ -20,6 +22,17 @@ export const Home = () => {
 	function handleSubmit(event) {
 		event.preventDefault();
 	}
+	const validacion = (email, password) => {
+		actions.getUser(email, password);
+		setTimeout(() => permitir(), 2000);
+	};
+	const permitir = () => {
+		if (store.permitir === true) {
+			actions.changeNav(true);
+			window.location.href = "./demo";
+		}
+	};
+
 	return (
 		<div className="container mb-5">
 			<div className="row">
@@ -70,15 +83,17 @@ export const Home = () => {
 								/>
 								<br />
 							</Form.Group>
-							<Link to="/demo">
-								<button
-									type="submit"
-									className="btn btn-primary btn-lg btn-block"
-									disabled={!validateForm()}
-									onClick={() => actions.changeNav(true)}>
-									Login
-								</button>
-							</Link>
+
+							<button
+								type="submit"
+								className="btn btn-primary btn-lg btn-block"
+								disabled={!validateForm()}
+								onClick={() => validacion(email, password)}>
+								Login
+							</button>
+							<br />
+							<LoginFacebook></LoginFacebook>
+
 							<Link to="/recuperacion">
 								<p className="mt-2" style={{ color: "blue" }}>
 									Recuperar contraseña
