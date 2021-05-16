@@ -2,6 +2,8 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
+from flask import Flask, request, jsonify, url_for, Blueprint,current_app
+from api.models import db, User, Question
 from api.utils import generate_sitemap, APIException
 from flask_mail import Message
 from flask_jwt_extended import create_access_token, JWTManager, jwt_required, get_jwt_identity

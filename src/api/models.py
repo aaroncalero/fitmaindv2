@@ -21,9 +21,9 @@ def serialize(self):
         "email": self.email,
         "birthday":self.birthday,
         "gender":self.gender,
-        "name":self.name
-        "cant_question":self.name
-        "nota_alta":self.name
+        "name":self.name,
+        "cant_question":self.cant_question,
+        "nota_alta":self.nota_alta
             # do not serialize the password, its a security breach
     }	
 
