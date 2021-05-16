@@ -9,6 +9,8 @@ class User(db.Model):
     birthday = db.Column(db.String(120), unique=False, nullable=False)
     gender = db.Column(db.String(120), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
+    cant_question = db.Column(db.String(120), unique=True, nullable=False)
+    nota_alta = db.Column(db.String(120), unique=True, nullable=False)
     
 def __repr__(self):
     return '<User %r>' % self.username
@@ -20,32 +22,12 @@ def serialize(self):
         "birthday":self.birthday,
         "gender":self.gender,
         "name":self.name
+        "cant_question":self.name
+        "nota_alta":self.name
             # do not serialize the password, its a security breach
     }	
 
-class Calificaciones(db.Model):
-    __tablename__= 'calificaciones'
-    id = db.Column(db.Integer, primary_key=True)
-    id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
-    id_question = db.Column(db.Integer, db.ForeignKey('question.id'))
-    calificacion = db.Column(db.Integer, unique=False, nullable=False)
-    calificaciones = db.relationship('User', backref='user', lazy=True) 
-    calificaciones = db.relationship('Question', backref='question', lazy=True)   
-         
-    #calificaciones_test = db.relationship('Calificaciones', backref='test', lazy=True)
-
-#def __repr__(self):
-    #return '<Calificaciones %r>' % self.username
-    
-    
-    def serialize(self):
-        return {
-            "id": self.id,
-            "id_user": self.id_user,
-            "id_question": self.id_question,
-            "calificacion": self.calificacion
-            # do not serialize the password, its a security breach
-        }
+ 
 
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
