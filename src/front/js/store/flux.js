@@ -71,6 +71,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(result => console.log(result))
 					.catch(error => console.log("error", error));
+			},
+			postForgot: email => {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+					email: email
+				});
+
+				var requestOptions = {
+					method: "POST",
+					headers: myHeaders,
+					body: raw,
+					redirect: "follow"
+				};
+
+				fetch("https://3001-azure-walrus-ksrnrz4p.ws-us04.gitpod.io/api/forgot_pass", requestOptions)
+					.then(response => {
+						if (response.status >= 200 && response.status < 300) {
+							return response.json();
+						} else {
+							alert("error" + response.status);
+						}
+					})
+					.then(result => console.log(result))
+					.catch(error => console.log("error", error));
 			}
 		}
 	};

@@ -2,8 +2,8 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
-#import sendgrid
-#from sendgrid.helpers.mail import *
+import sendgrid
+from sendgrid.helpers.mail import *
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Calificaciones, Question
 from api.utils import generate_sitemap, APIException
@@ -95,17 +95,33 @@ def Question_agregar():
 #RECUPERAR CONTRASEÑA
 @api.route("/forgot_pass", methods=["POST"])
 def forgot_pass():
-    from app import mail
     #paso1 recibir email y respuesta secreta
     #paso2 corroborar si la respuesta secreta es correcta y el mail (CONSULTAR A BASE DE DATOS)
     #paso3 si mail y respuesta calzan enviar mail con
     email=request.json.get("email", None)
-    email_registrado = User.query.filter_by(email=email).first()
-    if email_registrado is None:
+    print(email)
+    if not email:
         return jsonify({"message": "Email no registrado"}), 400
-    msg= Message('Recuperacion de contraseña', recipients=[email])
-    msg.html = ('<strong>Su contraseña actual es </strong>'+ email_registrado.password)
-    mail.send(msg)
+
+    # email_registrado = User.query.filter_by(email=email).first()
+    # if not email_registrado:
+    #     return jsonify ({"msg":"Si el correo es válido se ha enviado la información de recuperación"}), 400
+
+    # print(email_registrado.password)
+    sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
+    from_email = Email("cris-nando01@hotmail.com")
+    to_email = To(email)
+    subject = "Sending with SendGrid is Fun"
+    content = Content("text/plain", "and easy to do anywhere, even with Python")
+    mail = Mail(from_email, to_email, subject, content)
+    try:
+        response = sg.client.mail.send.post(request_body=mail.get())
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+    except:
+        return jsonify({"msg": "failed"}), 400
+
     return jsonify({"message": "Su contraseña fue enviada a su correo"}), 200
 
 
