@@ -45,7 +45,7 @@ export const Recuperacion = () => {
 									type="button"
 									className="btn btn-success m-3"
 									disabled={!validateForm()}
-									onClick={() => alert("Contraseña enviada a tu correo electronico")}>
+									onClick={() => actions.postForgot(email)}>
 									Enviar
 								</button>
 							</Link>

@@ -19,19 +19,19 @@ static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
-#Email
-mail_settings = {
-    "MAIL_SERVER": "smtp.gmail.com",
-    "MAIL_PORT":  465,
-    "MAIL_USE_SSL": True,
-    "MAIL_USERNAME": "finanestu19@gmail.com",
-    "MAIL_PASSWORD": "Fernando010411",
-    "MAIL_DEFAULT_SENDER": ('FitMind', 'finanestu19@gmail.com')
-}
 
-app.config.update(mail_settings)
-mail = Mail(app)
-app.mail= mail
+app.config.update(dict(
+    DEBUG = True,
+    MAIL_SERVER = 'smtp.outlook.com',
+    MAIL_PORT = 587,
+    MAIL_USE_TLS = True,
+    MAIL_USE_SSL = False,
+    MAIL_USERNAME = 'fnarbona@outlook.com',
+    MAIL_PASSWORD = 'T3rmin4t0r10585!?',
+))
+app.mail=Mail(app)
+
+
 # database condiguration
 if os.getenv("DATABASE_URL") is not None:
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
@@ -49,7 +49,7 @@ CORS(app)
 
 # add the admin
 setup_admin(app)
-
+mail = Mail(app)
 # Add all endpoints form the API with a "api" prefix
 app.register_blueprint(api, url_prefix='/api')
 

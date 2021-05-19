@@ -2,6 +2,8 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
+import sendgrid
+from sendgrid.helpers.mail import *
 from flask import Flask, request, jsonify, url_for, Blueprint,current_app
 from api.models import db, User, Pregunta
 from api.utils import generate_sitemap, APIException
@@ -13,7 +15,11 @@ api = Blueprint('api', __name__)
 @api.route('/usuario', methods=['POST'])
 def create_User():
     data = request.get_json()
+    if not data:
+        return jsonify({"msg":"error"}),400 
+    #print(data)
     for i in data:
+
         user = User(name=i["name"], password=i["password"], birthday=i["birthday"], gender=i["gender"],
                     email=i["email"], cant_question=i["cant_question"], nota_alta=i["nota_alta"])
         db.session.add(user)
@@ -35,6 +41,7 @@ def consulta_User():
     request = user.serialize()
     return jsonify(request), 200
 # LOGIN
+
 
 
 @api.route("/login", methods=["POST"])
@@ -68,7 +75,9 @@ def addPregunta():
         preg = Pregunta(test_log=i["test_log"],frase=i["frase"],option_correcta=i["option_correcta"],option_mal1=i["option_mal1"],option_mal2=i["option_mal2"],option_mal3=i["option_mal3"])
         db.session.add(preg)
         db.session.commit()
+
     return jsonify({"data": "ok"}), 200
+
 
 @api.route('/pregunta', methods=['GET'])
 def infoPregunta():

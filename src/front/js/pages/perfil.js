@@ -13,6 +13,7 @@ export const Perfil = () => {
 		actions.changeNav("interna");
 		actions.getName();
 	}, []);
+
 	return (
 		<div className="container-fluid text-center p-3 Principal">
 			<div className="text-center mt-1 mb-5">
@@ -21,11 +22,14 @@ export const Perfil = () => {
 						<div className="col-lg-12  mt-3">
 							<div>
 								<div>
+
 									<div>
 										<img id="avatar" src={foto} />
 										<h4>{store.currentUser.name}</h4>
 									</div>
+
 								</div>
+
 
 								<div className="data">
 									<ul className="list-unstyled">
@@ -61,6 +65,7 @@ export const Perfil = () => {
 										</li>
 									</ul>
 								</div>
+
 							</div>
 						</div>
 					</div>
