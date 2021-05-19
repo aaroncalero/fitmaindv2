@@ -12,6 +12,9 @@ export const Perfil = () => {
 		actions.changeNav("interna");
 	}, []);
 	const { store, actions } = useContext(Context);
+	useEffect(() => {
+		actions.getName();
+	}, []);
 
 	return (
 		<div className="text-center mt-1 mb-5">
@@ -22,7 +25,7 @@ export const Perfil = () => {
 							<div>
 								<div>
 									<img id="avatar" src={foto} />
-									<h4>Nombre_usuario</h4>
+									<h4>{store.currentUser && store.currentUser.name}</h4>
 								</div>
 							</div>
 
@@ -30,18 +33,20 @@ export const Perfil = () => {
 								<ul className="list-unstyled">
 									<li>
 										<p>
-											<strong className="datos">Correo:</strong> <span>mail@example.com</span>
+											<strong className="datos">Correo:</strong>{" "}
+											<span>{store.currentUser && store.currentUser.email}</span>
 										</p>
 									</li>
 									<li>
 										<p>
 											<strong className="datos">Fecha de Nacimiento:</strong>{" "}
-											<span>15/5/2017</span>
+											<span>{store.currentUser && store.currentUser.birthday}</span>
 										</p>
 									</li>
 									<li>
 										<p>
-											<strong className="datos">Genero:</strong> <span>Hombre</span>
+											<strong className="datos">Sexo:</strong>{" "}
+											<span>{store.currentUser && store.currentUser.gender}</span>
 										</p>
 									</li>
 									<li>

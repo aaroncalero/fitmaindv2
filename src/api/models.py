@@ -12,8 +12,9 @@ class User(db.Model):
     cant_question = db.Column(db.String(120), unique=True, nullable=False)
     nota_alta = db.Column(db.String(120), unique=True, nullable=False)
     
-def __repr__(self):
-    return '<User %r>' % self.username
+    def __repr__(self):
+        return '<User %r>' % self.username
+
 
 def serialize(self):
     return {
@@ -25,7 +26,7 @@ def serialize(self):
         "cant_question":self.cant_question,
         "nota_alta":self.nota_alta
             # do not serialize the password, its a security breach
-    }	
+        }	
 
  
 

@@ -18,11 +18,15 @@ export const Demo = () => {
 	const gotest = () => {
 		return (window.location.href = "./test");
 	};
+	useEffect(() => {
+		actions.getName();
+		console.log(store);
+	}, []);
 
 	return (
 		<div className="backContainer">
-			<div className="container mt-5">
-				<h1 id="title">Bienvenido nombreUsuario!</h1>
+			<div className="container mt-5 text-center">
+				<h1 id="title">Bienvenido {store.currentUser && store.currentUser.name}</h1>
 				<div className="row mt-5 mb-5">
 					<div id="home" className="col-6 opcion text-center" onClick={() => goPerfil()}>
 						<h1 className="textoGuia">Mi Perfil</h1>
