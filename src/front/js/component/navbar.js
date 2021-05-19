@@ -20,7 +20,9 @@ export const Navbar = () => {
 					</Link>
 				) : store.navState == "principal" ? (
 					<Link to="/">
-						<button className="btn btn-light">Salir</button>
+						<button className="btn btn-light" onClick={() => actions.setpermitir()}>
+							Salir
+						</button>
 					</Link>
 				) : store.navState == "test" ? (
 					<Link to="/demo">

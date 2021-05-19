@@ -21,9 +21,17 @@ def create_User():
     return jsonify({"user": "ok"}), 200
 
 
-@api.route('/usuario/<int:position>', methods=['GET'])
-def consulta_User(position):
-    user = User.query.filter_by(id=position).first()
+# @api.route('/usuario/<int:position>', methods=['GET'])
+# def consulta_User(position):
+#     user = User.query.filter_by(id=position).first()
+#     request = user.serialize()
+#     return jsonify(request), 200
+
+@api.route('/usuario', methods=['GET'])
+@jwt_required()
+def consulta_User():
+    current_user_id = get_jwt_identity()
+    user = User.query.filter_by(id=current_user_id).first()
     request = user.serialize()
     return jsonify(request), 200
 # LOGIN

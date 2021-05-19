@@ -8,11 +8,11 @@ import "../../styles/perfil.scss";
 import foto from "../../img/perfil.jpg";
 
 export const Perfil = () => {
+	const { store, actions } = useContext(Context);
 	useEffect(() => {
 		actions.changeNav("interna");
+		actions.getName();
 	}, []);
-	const { store, actions } = useContext(Context);
-
 	return (
 		<div className="container-fluid text-center p-3 Principal">
 			<div className="text-center mt-1 mb-5">
@@ -23,7 +23,7 @@ export const Perfil = () => {
 								<div>
 									<div>
 										<img id="avatar" src={foto} />
-										<h4>Nombre_usuario</h4>
+										<h4>{store.currentUser.name}</h4>
 									</div>
 								</div>
 
@@ -31,29 +31,32 @@ export const Perfil = () => {
 									<ul className="list-unstyled">
 										<li>
 											<p>
-												<strong className="datos">Correo:</strong> <span>mail@example.com</span>
+												<strong className="datos">Correo:</strong>{" "}
+												<span>{store.currentUser.email}</span>
 											</p>
 										</li>
 										<li>
 											<p>
 												<strong className="datos">Fecha de Nacimiento:</strong>{" "}
-												<span>15/5/2017</span>
+												<span>{store.currentUser.birthday}</span>
 											</p>
 										</li>
 										<li>
 											<p>
-												<strong className="datos">Genero:</strong> <span>Hombre</span>
+												<strong className="datos">Genero:</strong>{" "}
+												<span>{store.currentUser.gender}</span>
 											</p>
 										</li>
 										<li>
 											<p>
 												<strong className="datos">Total de pruebas realizadas:</strong>{" "}
-												<span>0</span>
+												<span>{store.currentUser.cant_question}</span>
 											</p>
 										</li>
 										<li>
 											<p>
-												<strong className="datos">Nota más Alta:</strong> <span>0</span>
+												<strong className="datos">Nota más Alta:</strong>{" "}
+												<span>{store.currentUser.nota_alta}</span>
 											</p>
 										</li>
 									</ul>

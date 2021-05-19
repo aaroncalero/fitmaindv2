@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			currentUser: {},
 			navState: "externa",
 			permitir: false,
 			item: 1,
@@ -11,6 +12,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 			cuestionario: []
 		},
 		actions: {
+			getName: () => {
+				var myHeaders = new Headers();
+				myHeaders.append("Authorization", "Bearer " + sessionStorage.getItem("token"));
+
+				var requestOptions = {
+					method: "GET",
+					headers: myHeaders,
+					redirect: "follow"
+				};
+
+				fetch("https://3001-bronze-prawn-dv5v3p0o.ws-us04.gitpod.io/api/usuario", requestOptions)
+					.then(response => response.json())
+					.then(result => setStore({ currentUser: result }))
+					.catch(error => console.log("error", error)); // alert(result))
+			},
 			traepreguntas: () => {
 				var requestOptions = {
 					method: "GET",
@@ -49,7 +65,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(result => {
-						alert(result.token);
+						sessionStorage.setItem("token", result.token);
 						setStore({ permitir: true });
 					})
 					.catch(error => console.log("error", error));
@@ -73,6 +89,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setAleatorioPregunta: () => {
 				let cantidad = Math.floor(Math.random() * (23 - 1)) + 1;
 				setStore({ aleatorioPregunta: cantidad });
+			},
+			setpermitir: () => {
+				setStore({ permitir: false });
 			}
 		}
 	};
