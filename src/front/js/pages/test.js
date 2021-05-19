@@ -1,121 +1,43 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Row, Col, Form, Label, Input, FormGroup, Button } from "reactstrap";
 import { Context } from "../store/appContext";
-
-import "../../styles/perfil.scss";
-
-import ejemplo from "../../img/example.gif";
+import { Preguntas } from "../component/preguntas";
+import { Viewresultuser } from "../component/viewresultuser";
 
 export const Test = () => {
 	useEffect(() => {
-		actions.changeNav("interna");
+		actions.changeNav("test");
 	}, []);
+
 	const { store, actions } = useContext(Context);
+	const revisar = () => {
+		store.check ? siguiente() : actions.setDisplayAlert("block");
+	};
+	const siguiente = () => {
+		actions.setAleatorioPregunta();
+		let conteo = store.item;
+		conteo += 1;
+		actions.changeitem(conteo);
+		actions.setDisplayAlert("none");
+		actions.setcheck(false);
+	};
 
 	return (
-		<div className="mt-5 divpinta">
-			<Row>
-				<Col xs="3" />
-
-				<Col xs="6" className="mt-4">
-					<div>
-						<p className="text-center" id="centrado">
-							Razonamiento Matematico!
-						</p>
-					</div>
-					<div className="content text-center" id="frases">
-						<div className="texto-encima">
-							<p className="centrado" id="centrado">
-								<i className="far fa-comment" id="icono" style={{ fontSize: 150 }} />
-								«Existe el mañana por alguna razón.»
-							</p>
-						</div>
-					</div>
-					<br />
-					<div>
-						<p className="text-center">
-							En una caja, se tiene 200 canicas de color verde, 200 de color rojo, 200 de color azul, 200
-							de color negro y 250 de color amarillo. ¿Cuál es el menor número de canicas que se debe
-							extraer al azar para tener, con certeza, al menos 100 canicas del mismo color?{" "}
-						</p>
-					</div>
-					<Form>
-						<FormGroup>
-							<h3>Respuesta</h3>
-							<div className="form-check">
-								<input
-									className="form-check-input"
-									type="radio"
-									name="flexRadioDefault"
-									id="flexRadioDefault1"
-								/>
-								<Label className="form-check-label" for="flexRadioDefault1">
-									{" "}
-									A - 497
-								</Label>
-							</div>
-							<div className="form-check">
-								<input
-									className="form-check-input"
-									type="radio"
-									name="flexRadioDefault"
-									id="flexRadioDefault2"
-								/>
-								<Label className="form-check-label" for="flexRadioDefault2">
-									{" "}
-									B - 498
-								</Label>
-							</div>
-							<div className="form-check">
-								<input
-									className="form-check-input"
-									type="radio"
-									name="flexRadioDefault"
-									id="flexRadioDefault3"
-								/>
-								<Label className="form-check-label" for="flexRadioDefault3">
-									{" "}
-									C - 495
-								</Label>
-							</div>
-							<div className="form-check">
-								<input
-									className="form-check-input"
-									type="radio"
-									name="flexRadioDefault"
-									id="flexRadioDefault4"
-								/>
-								<Label className="form-check-label" for="flexRadioDefault4">
-									{" "}
-									D - 496
-								</Label>
-							</div>
-						</FormGroup>
-						<FormGroup>
-							<div />
-						</FormGroup>
-						<div className="formulario__grupo formulario__formulario-error" id="formulario__error">
-							<p className="message__error" id="message__error" style={{ margin: 0 }}>
-								<i className="fas fa-exclamation-triangle" /> Error: Debe Marcar al menos una respuesta!
-							</p>
-						</div>
-						<br />
-						<div className="container-fluid text-center">
-							<i className="fas fa-arrow-circle-right" style={{ fontSize: 60 }} />
-						</div>
-					</Form>
-				</Col>
-			</Row>
-			<br />
-			<br />
-			<div className="text-center alert alert-info" id="alert_inf">
-				{store.message || "Para dar por terminado el test, presiona "}
-				<Link to="/">
-					<Button className="btn btn-danger btn-lg" id="salirquest" style={{ marginTop: 4 }}>
-						Salir
-					</Button>
-				</Link>
+		<div className="container-fluid text-center p-3 Principal">
+			<h1>Prueba lógica</h1>
+			<div className="container-fluid">
+				{store.item < 6 ? (
+					<Preguntas
+						frase={store.cuestionario[store.aleatorioPregunta].frase}
+						pregunta={store.cuestionario[store.aleatorioPregunta].test_log}
+					/>
+				) : (
+					<Viewresultuser />
+				)}
+			</div>
+			<div className="mb-5" style={{ display: store.botPregunta }}>
+				<i className="fas fa-arrow-circle-right" style={{ fontSize: 60 }} onClick={() => revisar()} />
+				<h5>Siguiente</h5>
 			</div>
 		</div>
 	);

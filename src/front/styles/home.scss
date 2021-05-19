@@ -1,8 +1,19 @@
 body{
+  background-image:    
+    url(../img/fondo.png);
+    background-size: 100% 100%;
+    color: white;  
+}
+.Principal{
     background-image:    
     url(../img/fondo.png);
     background-size: 100% 100%;
+    background-repeat: no-repeat;
     color: white;
+}
+.divpinta{
+    background-color: rgba(137, 43, 226, 0.753);
+    color:white;
 }
 .login{
     background: rgba(128, 128, 128, 0.801);

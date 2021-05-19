@@ -1,0 +1,46 @@
+
+.globo{
+  color: white;
+  position: absolute;
+  text-transform: uppercase;
+  font-size: 12px;
+  border-radius: 100%;
+  padding: var(--borde);
+  --borde: 1rem;
+  font-family: sans-serif;
+  z-index: 1; 
+  background-color: rgba(109, 43, 196, 0.911);
+  filter: drop-shadow(0px 0px 1px black) ;
+}
+
+.globo.i{
+  width: 12rem; 
+  top: 30%
+//   left: 80px;
+}
+.globo.abajo-derecha::before{
+    
+  --colita: 20px;
+  left: 50%;
+  bottom: calc( var(--colita) / -1.5);
+  transform: skewY(30deg) rotateZ(-30deg);
+  border-radius: 0 0 0 10em;
+  box-shadow: 
+    inset calc(var(--colita)/2) calc(var(--colita)/3) 0 0 rgba(109, 43, 196, 0.705);
+}
+.globo::before{
+  content: '';
+ 
+  position: absolute; 
+  z-index: -1;
+  width: var(--colita);
+  height: var(--colita);
+}
+.gif{
+    height: 12rem;
+    margin-top: 60%;
+    margin-left: 60%;
+}
+#item{
+    color: rgba(192, 186, 186, 0.815);
+}

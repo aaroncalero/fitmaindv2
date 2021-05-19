@@ -8,10 +8,8 @@ export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<nav className=" divpinta navbar  mb-3">
-			<Link to="/">
-				<img style={{ width: "4rem" }} src={logo} />
-			</Link>
+		<nav className=" divpinta navbar">
+			<img style={{ width: "4rem" }} src={logo} />
 			<div className="mx-auto">
 				<h1 id="title">FitMind</h1>
 			</div>
@@ -24,10 +22,16 @@ export const Navbar = () => {
 					<Link to="/">
 						<button className="btn btn-light">Salir</button>
 					</Link>
-				) : (
+				) : store.navState == "test" ? (
+					<Link to="/demo">
+						<button className="btn btn-danger">Terminar Prueba</button>
+					</Link>
+				) : store.navState == "interna" ? (
 					<Link to="/demo">
 						<button className="btn btn-light">Volver</button>
 					</Link>
+				) : (
+					""
 				)}
 			</div>
 		</nav>
