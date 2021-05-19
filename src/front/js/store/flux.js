@@ -22,6 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 
 				fetch("https://3001-pink-halibut-gfbh3zr8.ws-us04.gitpod.io/api/login", requestOptions)
+
 					.then(response => {
 						if (response.status >= 200 && response.status < 300) {
 							return response.json();

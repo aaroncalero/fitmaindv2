@@ -4,8 +4,8 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 import os
 import sendgrid
 from sendgrid.helpers.mail import *
-from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Calificaciones, Question
+from flask import Flask, request, jsonify, url_for, Blueprint,current_app
+from api.models import db, User, Question
 from api.utils import generate_sitemap, APIException
 from flask_mail import Message
 from flask_jwt_extended import create_access_token, JWTManager, jwt_required, get_jwt_identity
@@ -102,6 +102,7 @@ def forgot_pass():
     #paso2 corroborar si la respuesta secreta es correcta y el mail (CONSULTAR A BASE DE DATOS)
     #paso3 si mail y respuesta calzan enviar mail con
     email=request.json.get("email", None)
+
     print(email)
     if not email:
         return jsonify({"message": "Email no registrado"}), 400
@@ -125,7 +126,6 @@ def forgot_pass():
     except:
         return jsonify({"msg": "failed"}), 400
 
-    return jsonify({"message": "Su contraseña fue enviada a su correo"}), 200
 
 
 

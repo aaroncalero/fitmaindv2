@@ -19,6 +19,7 @@ static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
+
 app.config.update(dict(
     DEBUG = True,
     MAIL_SERVER = 'smtp.outlook.com',
@@ -29,6 +30,8 @@ app.config.update(dict(
     MAIL_PASSWORD = 'T3rmin4t0r10585!?',
 ))
 app.mail=Mail(app)
+
+
 # database condiguration
 if os.getenv("DATABASE_URL") is not None:
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
