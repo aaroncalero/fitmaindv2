@@ -1,7 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
-//import Form from "react-bootstrap/Form";
-//import Button from "react-bootstrap/Button";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import { Row, Col, Form, Label, Input, FormGroup, Button } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,21 +8,20 @@ import { Link } from "react-router-dom";
 import "../../styles/viewresultuser.scss";
 
 export const Viewresultuser = () => {
+	useEffect(() => {
+		actions.changeNav("");
+		actions.setBotPregunta("none");
+	}, []);
 	const { store, actions } = useContext(Context);
-	//let nombre = aron;
 	var notafinal = 80;
 	var nota = [{ name: "Preguntas falladas según item evaludao", value: "Nota" }];
 
-	var data = [
-		{ id: 1, name: "Razonamineto logico", value: "2" },
-		{ id: 2, name: "Razonamiento Matematico", value: "5" },
-		{ id: 3, name: "Razonamiento Abstracto", value: "4" }
-	];
+	var data = [{ id: 1, name: "Razonamiento logico", value: "2" }];
 
 	var result = [{ name: "Total de respuesta falladas", value: "11" }];
 
 	return (
-		<div className="mt-5 divpinta">
+		<div>
 			<Row>
 				<Col xs="3" />
 
@@ -69,9 +66,9 @@ export const Viewresultuser = () => {
 					</div>
 					<br />
 					<div className="text-center">
-						<Link to="/">
+						<Link to="/demo">
 							<Button className="btn btn-danger btn-lg" id="salirquest" style={{ marginTop: 4 }}>
-								Regresar
+								Salir
 							</Button>
 						</Link>
 					</div>

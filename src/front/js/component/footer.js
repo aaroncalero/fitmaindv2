@@ -5,7 +5,7 @@ import micitt from "../../img/Micitt_logo.png";
 import "../../styles/footer.scss";
 
 export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center mt-5">
+	<footer className="footer py-3 text-center">
 		<div className="container">
 			<div className="row">
 				<div className="col-3">
