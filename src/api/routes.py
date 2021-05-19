@@ -15,20 +15,23 @@ api = Blueprint('api', __name__)
 @api.route('/createUser', methods=['POST'])
 def create_User():
     data = request.get_json()
+    if not data:
+        return jsonify({"msg":"error"}),400 
     #print(data)
     for i in data:
         #print(item["name"])
         user=User(name=i["name"], password=i["password"], birthday=i["birthday"], gender=i["gender"], email=i["email"])
         db.session.add(user)
         db.session.commit()
-    return jsonify({"user":"ok"}),200 
-
-@api.route('/consultaUser', methods=['GET'])
-def consulta_User():
-    id=request.json.get("id",None)
-    consulta= User.query.get(id)
+    return jsonify({"msg":"ok"}),200 
     
-    return jsonify({"msg":consulta.serialize()}),200
+@api.route('/consultaUser', methods=['GET'])
+@jwt_required()
+def consulta_User():
+    current_user_id=get_jwt_identity() #aaron
+    usuario = User.query.get(current_user_id)
+
+    return jsonify({"msg": usuario.serialize()}),200
 #CALIFICACION
 @api.route("/createCalificacion", methods=['POST'])
 def create_Calificacion():

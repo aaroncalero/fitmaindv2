@@ -2,12 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { Row, Col, Form, Label, Input, FormGroup, Button } from "reactstrap";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import "../../styles/registeruser.scss";
 
 export const RegisterUser = () => {
-	useEffect(() => {
-		actions.changeNav("principal");
-	}, []);
 	const { store, actions } = useContext(Context);
 	const [name, setName] = useState("");
 	const [password, setPassword] = useState("");
@@ -15,6 +14,22 @@ export const RegisterUser = () => {
 	const [gender, setGender] = useState("");
 	const [correo, setCorreo] = useState("");
 
+	const registrar = (name, password, birth, gender, correo) => {
+		actions.postUser(name, password, birth, gender, correo);
+		const MySwal = withReactContent(Swal);
+
+		MySwal.fire({
+			title: <p>Te has registrado</p>
+			//didOpen: () => {
+			// `MySwal` is a subclass of `Swal`
+			//   with all the same instance & static methods
+			//MySwal.clickConfirm();
+			//}
+		});
+	};
+	useEffect(() => {
+		actions.changeNav("principal");
+	}, []);
 	return (
 		<div className="divpinta">
 			<Row>
@@ -82,7 +97,9 @@ export const RegisterUser = () => {
 						<FormGroup>
 							<Button
 								color="danger"
-								onClick={() => actions.postUser(name, password, birth, gender, correo)}>
+								onClick={() => {
+									registrar(name, password, birth, gender, correo);
+								}}>
 								Registrarse
 							</Button>
 						</FormGroup>
