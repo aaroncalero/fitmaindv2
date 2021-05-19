@@ -22,14 +22,11 @@ export const Perfil = () => {
 						<div className="col-lg-12  mt-3">
 							<div>
 								<div>
-
 									<div>
 										<img id="avatar" src={foto} />
 										<h4>{store.currentUser.name}</h4>
 									</div>
-
 								</div>
-
 
 								<div className="data">
 									<ul className="list-unstyled">
@@ -65,7 +62,6 @@ export const Perfil = () => {
 										</li>
 									</ul>
 								</div>
-
 							</div>
 						</div>
 					</div>

@@ -6,12 +6,8 @@ import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import TextInput from "react-autocomplete-input";
 import { Accordion } from "react-bootstrap";
-import { LoginFacebook } from "../component/login_facebook";
 
 export const Home = () => {
-	useEffect(() => {
-		actions.changeNav("externa");
-	}, []);
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -32,7 +28,9 @@ export const Home = () => {
 			window.location.href = "./demo";
 		}
 	};
-
+	useEffect(() => {
+		actions.changeNav("externa");
+	}, []);
 	return (
 		<div className="container-fluid text-center p-3 Principal">
 			<div className="container mb-5">
@@ -92,7 +90,6 @@ export const Home = () => {
 									Login
 								</button>
 								<br />
-								<LoginFacebook />
 								<Link to="/recuperacion">
 									<p className="mt-2" style={{ color: "blue" }}>
 										Recuperar contraseña
