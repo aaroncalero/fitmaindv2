@@ -16,7 +16,6 @@ export const Demo = () => {
 		return (window.location.href = "./tipoTest");
 	};
 	useEffect(() => {
-
 		actions.changeNav("principal");
 		actions.getName();
 	}, []);
@@ -29,7 +28,6 @@ export const Demo = () => {
 						<div id="home" className="col-6 opcion text-center" onClick={() => goPerfil()}>
 							<h1 className="textoGuia">Mi Perfil</h1>
 						</div>
-
 
 						<div id="test" className="col-6 opcion text-center" onClick={() => gotest()}>
 							<h1 className="textoGuia">Inicia una prueba</h1>

@@ -18,13 +18,8 @@ export const RegisterUser = () => {
 		actions.postUser(name, password, birth, gender, correo);
 		const MySwal = withReactContent(Swal);
 
-		MySwal.fire({
-			title: <p>Te has registrado</p>
-			//didOpen: () => {
-			// `MySwal` is a subclass of `Swal`
-			//   with all the same instance & static methods
-			//MySwal.clickConfirm();
-			//}
+		MySwal.fire("Registrado Exitosamente").then(value => {
+			window.location.href = "./";
 		});
 	};
 	useEffect(() => {

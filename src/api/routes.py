@@ -12,12 +12,14 @@ from flask_jwt_extended import create_access_token, JWTManager, jwt_required, ge
 
 api = Blueprint('api', __name__)
 
+
+#registrar usuario
 @api.route('/usuario', methods=['POST'])
 def create_User():
     data = request.get_json()
     if not data:
         return jsonify({"msg":"error"}),400 
-    #print(data)
+
     for i in data:
 
         user = User(name=i["name"], password=i["password"], birthday=i["birthday"], gender=i["gender"],
@@ -26,23 +28,7 @@ def create_User():
         db.session.commit()
     return jsonify({"user": "ok"}), 200
 
-
-# @api.route('/usuario/<int:position>', methods=['GET'])
-# def consulta_User(position):
-#     user = User.query.filter_by(id=position).first()
-#     request = user.serialize()
-#     return jsonify(request), 200
-
-@api.route('/usuario', methods=['GET'])
-@jwt_required()
-def consulta_User():
-    current_user_id = get_jwt_identity()
-    user = User.query.filter_by(id=current_user_id).first()
-    request = user.serialize()
-    return jsonify(request), 200
-# LOGIN
-
-
+#login de usuario
 
 @api.route("/login", methods=["POST"])
 def login():
@@ -68,6 +54,19 @@ def protected():
     user = User.query.get(current_user_id)
     return jsonify({"id": user.id, "email": user.email})
 
+
+#get info de usuario
+
+@api.route('/usuario', methods=['GET'])
+@jwt_required()
+def consulta_User():
+    current_user_id = get_jwt_identity()
+    user = User.query.filter_by(id=current_user_id).first()
+    request = user.serialize()
+    return jsonify(request), 200
+
+#carga de preguntas a bd
+
 @api.route('/pregunta', methods=['POST'])
 def addPregunta():
     data = request.get_json()
@@ -78,6 +77,7 @@ def addPregunta():
 
     return jsonify({"data": "ok"}), 200
 
+#get de preguntas 
 
 @api.route('/pregunta', methods=['GET'])
 def infoPregunta():

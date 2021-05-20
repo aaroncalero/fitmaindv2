@@ -8,13 +8,15 @@ import PropTypes from "prop-types";
 
 export const Preguntas = props => {
 	const { store, actions } = useContext(Context);
-	useEffect(() => {
-		actions.setBotPregunta("block");
-	}, []);
+
 	const seleccionado = () => {
 		actions.setcheck(true);
 		actions.setDisplayAlert("none");
 	};
+
+	useEffect(() => {
+		actions.setBotPregunta("block");
+	}, []);
 	return (
 		<div className="container">
 			<div className="row">
