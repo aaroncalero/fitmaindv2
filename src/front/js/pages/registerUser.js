@@ -15,6 +15,7 @@ export const RegisterUser = () => {
 	const [gender, setGender] = useState("");
 	const [correo, setCorreo] = useState("");
 	let revisionEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 	const registrar = (name, password, birth, gender, correo) => {
 		actions.postUser(name, password, birth, gender, correo);
 		setTimeout(() => mensajeApi(), 2000);
@@ -57,7 +58,7 @@ export const RegisterUser = () => {
 							<Label>Nombre de Usuario</Label>
 							<Input
 								className="form-control"
-								placeholder="Como quiere que se le conozca"
+								placeholder="Digite su nombre completo"
 								type="text"
 								name="nombre"
 								value={name}

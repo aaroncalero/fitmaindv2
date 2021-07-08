@@ -10,6 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			botPregunta: "block",
 			aleatorioPregunta: "",
 			respuestaRegistro: "",
+			respuestaRecupera: false,
 			cuestionario: [],
 			opcionesAleatorias: [],
 			eleccion: "",
@@ -145,6 +146,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(result => result)
+					//setStore({ respuestaRecupera: true });) //	.then(result => setStore({ currentUser: result.msg }))
 					.catch(error => error);
 			},
 			//actualizacion de los registros del usuario
